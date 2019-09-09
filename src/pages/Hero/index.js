@@ -40,7 +40,7 @@ export default function Hero({ match }) {
           id={match.params.id}
         />
       ) : (
-        <div>deu RUIM</div>
+        <div>Carregando</div>
       )}
       <ul>
         {series.results

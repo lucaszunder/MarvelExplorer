@@ -1,7 +1,7 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 
 import { API, ts, hash, publicKey } from '../../../services/API';
-import { searchSuccess, heroSuccess } from './actions';
+import { searchSuccess } from './actions';
 
 function* searchHero({ query, steps }) {
   const response = yield call(
@@ -13,16 +13,4 @@ function* searchHero({ query, steps }) {
 
   yield put(searchSuccess(response.data.data));
 }
-function* getHero({ id }) {
-  const response = yield call(
-    API.get,
-    `characters/${id}?apikey=${publicKey}&ts=${ts}&hash=${hash}`
-  );
-
-  yield put(heroSuccess(response.data.data));
-}
-
-export default all([
-  takeLatest('SEARCH_REQUEST', searchHero),
-  takeLatest('HERO_REQUEST', getHero),
-]);
+export default all([takeLatest('SEARCH_REQUEST', searchHero)]);
