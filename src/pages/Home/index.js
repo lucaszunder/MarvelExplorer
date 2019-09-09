@@ -21,6 +21,14 @@ export default function Home() {
     }, 500);
   }
 
+  function search(text) {
+    setQuery(text);
+  }
+
+  function Page(page) {
+    setPage(page);
+  }
+
   useEffect(() => {
     searchHero(query);
     setPage(1);
@@ -32,7 +40,7 @@ export default function Home() {
 
   return (
     <Container>
-      <Search searchHero={searchHero} query={query} setQuery={setQuery} />
+      <Search search={search} />
       <ul>
         {heroes.results
           ? heroes.results.map(hero => (
@@ -46,9 +54,7 @@ export default function Home() {
             ))
           : null}
       </ul>
-      {heroes ? (
-        <Pagination itens={heroes.total} page={page} setPage={setPage} />
-      ) : null}
+      {heroes ? <Pagination itens={heroes.total} Page={Page} /> : null}
     </Container>
   );
 }

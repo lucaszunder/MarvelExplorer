@@ -26,6 +26,10 @@ export default function Hero({ match }) {
     }, 500);
   }
 
+  function Page(page) {
+    setPage(page);
+  }
+
   useEffect(() => {
     searchSeries(match.params.id, steps);
   }, [page]);
@@ -55,9 +59,7 @@ export default function Hero({ match }) {
             ))
           : null}
       </ul>
-      {series ? (
-        <Pagination itens={series.total} page={page} setPage={setPage} />
-      ) : null}
+      {series ? <Pagination itens={series.total} Page={Page} /> : null}
     </Container>
   );
 }

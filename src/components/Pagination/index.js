@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 
-export default function Pagination({ itens, page, setPage }) {
+export default function Pagination({ itens, Page }) {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    Page(page);
+  }, [page]);
+
   return (
     <Container>
       {itens > 8 ? (
@@ -29,6 +35,7 @@ Pagination.defaultProps = {
 
 Pagination.propTypes = {
   itens: PropTypes.number,
-  page: PropTypes.number.isRequired,
-  setPage: PropTypes.func.isRequired,
+  Page: PropTypes.func.isRequired,
 };
+
+// Revisar a chamada de Hooks da página home (má prática)

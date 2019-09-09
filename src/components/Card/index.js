@@ -20,3 +20,6 @@ Card.propTypes = {
   img: PropTypes.string.isRequired,
   clickable: PropTypes.bool.isRequired,
 };
+
+
+//Revisar a chamada de Hooks da página home (má prática

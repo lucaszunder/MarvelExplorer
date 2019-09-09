@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 
-export default function Search({ setQuery }) {
+export default function Search({ search }) {
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    search(query);
+  }, [query]);
+
   return (
     <Container>
       <input
@@ -14,5 +20,5 @@ export default function Search({ setQuery }) {
 }
 
 Search.propTypes = {
-  setQuery: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired,
 };
